@@ -1,0 +1,48 @@
+{% set name = "ReactionDataExtractor" %}
+{% set version = "0.0.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  path: ../../rde
+  #git_url: https://github.com/dmw51/rde.git
+
+build:
+  number: 0
+  script: pip install .
+  
+requirements:
+  build:
+    - python=3.6
+    - setuptools
+
+  run:
+    - python=3.6
+    - pillow
+    - matplotlib=2.2.4
+    - scikit-image<0.15
+    - scikit-learn
+    - scipy
+    - pytest
+    - tesserocr>=2.5
+    - cirpy
+    - chemdataextractor
+    - pyosra
+    - tesseract>=4.1.0
+    - gocr
+    - ocrad
+    - potrace
+test:
+  imports:
+    - reactiondataextractor  
+about:
+  home: https://github.com/dmw51/rde.git 
+  license: MIT
+  license_file: 'LICENSE'
+  summary: 'Convert chemical reaction schemes into machine-readable formats'
+  description: ReactionDataExtractor is a tool to convert images of simple reaction schemes into database-ready outputs. It accepts a variety of input image formats (e.g. .jpg/.jpeg, .png, .bmp), extracts data such as chemical diagrams, reaction arrows, conditions and labels. After converting diagrams, conditions and labels into string representations, it finds spatial dependencies to recover the full reaction scheme in a form of directed acyclic graph.
+extra:
+  recipe-maintainers:
+    - dmw51
